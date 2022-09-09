@@ -28,21 +28,21 @@ module.exports = {
         global.fake = global.fake
         global.fkontak = global.fkontak
         global.doc = pickRandom(["application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "application/msword", "application/pdf"])
-        global.img = 'https://telegra.ph/file/dffdaf0e8d59ad104e526.jpg'
+        global.img = 'https://telegra.ph/file/0c567eac403737766688f.jpg'
         global.fla = pickRandom(global.flaaa)
         global.namabot = conn.user.name
-        global.packname = '© RaaBotz-MD'
-        global.author = 'Made By Claraa © 2022'
+        global.packname = '© CUTE IQ-MD'
+        global.author = 'Made By Ziv San © 2022'
         global.packname2 = 'Made With'
-        global.author2 = 'Raa Bot By Claraa © 2022'
-        global.wm3 = '·͟͟͟͟͟͟͞͞͞͞͞͞Made By Claraa˚'
-        global.wm2 = '©𝙍𝙖𝙖-𝘽𝙤𝙩𝙯-𝙈𝘿' + ' ' + 'By 𝐂𝐥𝐚𝐫𝐚𝐚'
-        global.wm = '© 𝙍𝙖𝙖-𝘽𝙤𝙩𝙯--𝙈𝘿'
+        global.author2 = 'Cute Bot By Ziv San © 2022'
+        global.wm3 = '·͟͟͟͟͟͟͞͞͞͞͞͞Made By Ziv San˚'
+        global.wm2 = '© CUTE IQ-MD' + ' ' + 'By Ziv San'
+        global.wm = '© CUTE IQ-MD'
         global.colong1 = 'Ciss 📸'
-        global.colong2 = 'By Claraa'
+        global.colong2 = 'By Haori & Ziv San'
         global.kontak2 = [
-        ['62895604670507', 'Claraa', 'Creator Bot', 'Clarz939@support.com', true],
-        ['79217628068', 'Raa Botz-MD', 'Bot WhatsApp', 'Just Bot', true]
+        ['6282289304381', 'Ziv San', 'Creator Bot', 'Zivsan@support.com', true],
+        ['6281365255567', 'CUTE IQ-MD', 'Bot WhatsApp', 'Just Bot', true]
         ]
         global.bg = await (await fetch(img)).buffer()
         global.time = require('moment-timezone').tz('Asia/Jakarta').format('HH:mm:ss')
@@ -636,25 +636,37 @@ module.exports = {
 
                         } finally {
                             text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
-                                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', await this.getName(user))
-                            let wel = API('males', '/welcome2', {
+                                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace(/@user/g, '@' + user.split`@`[0])
+                            let wel = API('hardianto', '/api/welcome3', {
                                 profile: pp,
-                                username: await this.getName(user),
-                                background: 'https://telegra.ph/file/c538a6f5b0649a7861174.png',
-                                groupname: await this.getName(id),
-                                membercount: groupMetadata.participants.length
+                                name: await this.getName(user),
+                                bg: 'https://telegra.ph/file/a36809ab7862a77d18ac0.jpg',
+                                namegb: await this.getName(id),
+                                member: groupMetadata.participants.length
                             })
-                            let lea = API('males', '/goodbye2', {
+                            let lea = API('hardianto', '/api/goodbye3', {
                                 profile: pp,
-                                username: await this.getName(user),
-                                background: 'https://telegra.ph/file/c538a6f5b0649a7861174.png',
-                                groupname: await this.getName(id),
-                                membercount: groupMetadata.participants.length
+                                name: await this.getName(user),
+                                bg: 'https://telegra.ph/file/a36809ab7862a77d18ac0.jpg',
+                                namegb: await this.getName(id),
+                                member: groupMetadata.participants.length
                             })
-                             await this.sendButtonLoc(id, await conn.resize(pp, 300, 200), text, wm, action === 'add' ? 'Selamat Datang' : 'Sampai Jumpa', action === 'add' ? '.intro' : '-')  
-                         } 
-                     } 
-                 }
+                            /*await this.send3TemplateButtonImg(id, action === 'add' ? wel : lea, text, wm, action === 'add' ? 'selamat datang' : 'sampai jumpa', action === 'add' ? '.intro' : 'FokusID')*/
+   await conn.sendButtonDoc(id, text, wm, action == 'add' ? 'selamat datang' : 'sampai jumpa', action === 'add' ? '.intro' : 'Cute IQ-MD', fkontak,{
+  contextInfo: {mentionedJid: [user],
+    externalAdReply :{
+    mediaUrl: linkyt,
+    mediaType: 2,
+    description: deslink , 
+    title: titlink,
+    body: wm,
+    thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
+    sourceUrl: linkgc
+     }}
+  })
+                        }
+                    }
+                }
                 break
 
             case 'promote':
